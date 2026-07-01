@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fahrzeugverwaltung</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="app-header">
+        <h1>🚗 Fahrzeugverwaltung</h1>
+        <p class="subtitle">Modul 347 &ndash; Abschlussarbeit: Containerisierte Applikation</p>
+    </header>
+
+    <main class="container">
+        <section class="card form-card">
+            <h2 id="form-title">Neues Fahrzeug erfassen</h2>
+            <form id="fahrzeug-form">
+                <input type="hidden" id="fahrzeug-id" />
+
+                <div class="form-row">
+                    <label for="kennzeichen">Kennzeichen</label>
+                    <input type="text" id="kennzeichen" required placeholder="z.B. SG 12 345" />
+                </div>
+
+                <div class="form-row">
+                    <label for="marke">Marke</label>
+                    <input type="text" id="marke" required placeholder="z.B. Volkswagen" />
+                </div>
+
+                <div class="form-row">
+                    <label for="modell">Modell</label>
+                    <input type="text" id="modell" required placeholder="z.B. Golf" />
+                </div>
+
+                <div class="form-row">
+                    <label for="baujahr">Baujahr</label>
+                    <input type="number" id="baujahr" required min="1950" max="2100" placeholder="z.B. 2021" />
+                </div>
+
+                <div class="form-row">
+                    <label for="farbe">Farbe</label>
+                    <input type="text" id="farbe" placeholder="z.B. Blau" />
+                </div>
+
+                <div class="form-row">
+                    <label for="kilometerstand">Kilometerstand</label>
+                    <input type="number" id="kilometerstand" min="0" placeholder="z.B. 42000" />
+                </div>
+
+                <div class="form-row">
+                    <label for="status">Status</label>
+                    <select id="status">
+                        <option value="VERFUEGBAR">Verfügbar</option>
+                        <option value="VERMIETET">Vermietet</option>
+                        <option value="IN_WARTUNG">In Wartung</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn">Speichern</button>
+                    <button type="button" id="cancel-btn" class="secondary" hidden>Abbrechen</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="card list-card">
+            <div class="list-header">
+                <h2>Fahrzeugflotte</h2>
+                <button id="refresh-btn" class="secondary" title="Liste neu laden">↻ Aktualisieren</button>
+            </div>
+
+            <div id="status-banner" class="status-banner" hidden></div>
+
+            <table id="fahrzeug-table">
+                <thead>
+                    <tr>
+                        <th>Kennzeichen</th>
+                        <th>Marke</th>
+                        <th>Modell</th>
+                        <th>Baujahr</th>
+                        <th>Farbe</th>
+                        <th>km-Stand</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="fahrzeug-tbody">
+                    <tr><td colspan="8" class="empty-state">Lade Daten…</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Backend: Spring Boot + PostgreSQL &middot; Frontend: nginx &middot; Orchestrierung: Docker Compose</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
